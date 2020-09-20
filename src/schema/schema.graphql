@@ -1,0 +1,67 @@
+type Query {
+	user(id: ID!): User!
+	users(query: String): [User!]!
+	following: [User!]!
+	followers: [User!]!
+	tweet(id: ID!): Tweet!
+	profile: User!
+	homeTweets(offset: Int, limit: Int): [Tweet!]!
+	userTweets(id: ID!, offset: Int, limit: Int): [Tweet!]!
+}
+
+type Mutation {
+	signup(data: CreateUserInput!): User!
+	login(data: LoginUserInput!): AuthPayload!
+	createTweet(data: CreateTweetInput!): Tweet!
+	deleteTweet(id: ID!): Tweet!
+	updateTweetLike(id: ID!): Tweet!
+	updateFollowing(id: ID!): User!
+}
+
+type User {
+	id: ID!
+	name: String!
+	username: String!
+	email: String!
+	avatar: String
+	tweets: [Tweet!]
+	following: [User!]
+	followers: [User!]
+	likedTweets: [Tweet!]
+	createdAt: String!
+	updatedAt: String!
+}
+
+type Tweet {
+	id: ID!
+	text: String
+	image: String
+	likes: Int!
+	author: User!
+	fans: [User!]
+	createdAt: String!
+	updatedAt: String!
+}
+
+type AuthPayload {
+	token: String!
+	user: User!
+}
+
+input CreateUserInput {
+	name: String!
+	username: String!
+	email: String!
+	password: String!
+	avatar: String
+}
+
+input LoginUserInput {
+	email: String!
+	password: String!
+}
+
+input CreateTweetInput {
+	text: String
+	image: String
+}
