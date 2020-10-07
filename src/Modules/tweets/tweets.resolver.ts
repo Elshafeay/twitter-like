@@ -27,7 +27,6 @@ export class TweetsResolver {
 		@Args('limit') limit: number,
 		@CurrentUser() user: User
 	) {
-		console.log('hi');
 		if (offset !== null && limit !== null && offset >= 0 && limit >= 0){
 			return this.tweetsService.findHomeTweet(user.id, offset, limit);
 		}

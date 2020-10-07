@@ -1,32 +1,11 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <img src="resources/images/nestjs-graphql.png" alt="tech stack"/>
 </p>
-
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Twitter-like project, built with a purpose of trying a completely new stack to me.
+It has some basic twitter features like (Tweeting - Liking Tweets - Following someone - Searching for users)
 
 ## Installation
 
@@ -43,33 +22,36 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+now you can access it through **localhost:3000/graphql**
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+## Documentation
 
-# test coverage
-$ npm run test:cov
-```
+It's provided by GraphQL Playground. So once you run the server and go to */graphql* you can click on **docs** to see all queries and mutations you can do.
+
+<p align="center">
+  <img src="resources/images/docs.png" width=800 height=500 alt="docs"/>
+</p>
+
+#### **Please Notice:**
+- All the queries and mutations -except for login & signup of course- require Authentication. <br>So you need to create an account using *signup()* mutation and then log in.
+
+- when you login, you will be provided with a Bearer token that you can use in your requests header.<br>
+If you want to use GraphQL Playground, Something like this <br>``` { "Authorization": "Bearer then_put_your_token_here" }``` should be added to the Query Variables *HTTP HEADERS* area at the bottom left. 
+
+- **homeTweets()** brings the latest tweets from the people you're following + your latest tweets Compined and ordered by latest.  # represents the home page
+
+- **userTweets()** brings the latest tweets from a specific user. # represents that user's profile
+
+- **homeTweets()** and **userTweets()** can take optional parameters *offset* and *limit*, which are set by default to 0 and 20 accordingly.
+
+- **updateTweetLike()** and **updateFollowing()** act like a toggle button. <br>
+So if you used **updateTweetLike()** on some tweet, It will be liked.
+but if you used it again on the same tweet the like will be removed. same as **updateFollowing()** to follow/unfollow a specific user.
+
 
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
